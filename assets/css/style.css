@@ -1,0 +1,15 @@
+form{
+    padding: 5px;
+    border: 3px;
+    border-color: green;
+    border-style: solid;
+}
+table{
+    padding: 5px;
+    border: 3px;
+    border-color: green;
+    border-style: solid; 
+}
+.form-group{
+    margin: 5px;
+}
