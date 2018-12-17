@@ -64,8 +64,8 @@ $(document).ready(function () {
             newRow.append(trainName);
             newRow.append(newDestination);
             newRow.append(newDeparture);
-            newRow.append(newFrequency);
-            newRow.append(newNext);
+            newRow.append(newFrequency+ "minutes");
+            newRow.append(newNext + "minutes");
 
             //append the new row to the table body
             $("tbody").append(newRow);
