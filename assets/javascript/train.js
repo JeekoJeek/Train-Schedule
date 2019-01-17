@@ -51,21 +51,21 @@ $(document).ready(function () {
             var newDestination = $("<td>");
             var newDeparture = $("<td>");
             var newFrequency = $("<td>")
-            var newNext = $("<td>");
+            newNext = $("<td>");
 
             //give the new columns values
             trainName.text(snap.val().train);
             newDestination.text(snap.val().destination);
             newDeparture.text(snap.val().departure);
-            newFrequency.text(snap.val().frequency);
-            newNext.text(snap.val().minRemaining);
+            newFrequency.text(snap.val().frequency + " minutes");
+            newNext.text(snap.val().minRemaining + " minutes");
 
             //appending the columns to the new row
             newRow.append(trainName);
             newRow.append(newDestination);
             newRow.append(newDeparture);
-            newRow.append(newFrequency+ "minutes");
-            newRow.append(newNext + "minutes");
+            newRow.append(newFrequency);
+            newRow.append(newNext);
 
             //append the new row to the table body
             $("tbody").append(newRow);
@@ -73,19 +73,23 @@ $(document).ready(function () {
         })
 
     })
-    // database.ref().on("value", function(snapshot){
-    //     var newRow = $("<tr>")
+    database.ref().on("child_adde", function(snapshot){
+        var newRow = $("<tr>")
 
-    //     var trainName = $("<td>");
-    //     var newDestination = $("<td>");
-    //     var newDeparture = $("<td>");
-    //     var newFrequency = $("<td>")
-    //     var newNext = $("<td>");
+        var trainName = $("<td>");
+        var newDestination = $("<td>");
+        var newDeparture = $("<td>");
+        var newFrequency = $("<td>")
+        var newNext = $("<td>");
 
-    //     trainName.text(snapshot.val().train);
-    //     console.log(trainName);
-    //     newRow.append(trainName);
+        trainName.text(snapshot.val().train);
+        console.log(trainName);
+        newRow.append(trainName);
+        newRow.append(newDestination);
+        newRow.append(newDeparture);
+        newRow.append(newFrequency);
+        newRow.append(newNext);
 
-    //     $("tbody").append(newRow);
-    // })
+        $("tbody").append(newRow);
+    })
 })
