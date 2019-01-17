@@ -2,13 +2,13 @@ $(document).ready(function () {
     var database = firebase.database();
 
     //captures current Time
-    var currentTime=moment();
+    var currentTime = moment();
     console.log(currentTime);
     //canverted to Military time
-    var convertedCurrent=currentTime.format("HHmm")
+    var convertedCurrent = currentTime.format("HHmm")
     console.log(convertedCurrent);
 
-    
+
 
     $("#submit").on("click", function (event) {
         event.preventDefault();
@@ -20,11 +20,11 @@ $(document).ready(function () {
         var first = $("#first-train-input").val();
         var frequency = $("#frequency-input").val();
         //difference between current time and first train
-        var nextTrain= convertedCurrent-first;
+        var nextTrain = convertedCurrent - first;
         // total minutes between trains divided by frequency resulting in the remainder
-        var modulous=nextTrain%frequency;
+        var modulous = nextTrain % frequency;
         //frequency minus the remainder gives time until next train
-        var minRemaining=frequency-modulous;
+        var minRemaining = frequency - modulous;
         //logging variables to make sure they are correct
         console.log(newTrain);
         console.log(destination);
@@ -73,7 +73,7 @@ $(document).ready(function () {
         })
 
     })
-    database.ref().on("child_adde", function(snapshot){
+    database.ref().on("child_added", function (snapshot) {
         var newRow = $("<tr>")
 
         var trainName = $("<td>");
@@ -83,6 +83,10 @@ $(document).ready(function () {
         var newNext = $("<td>");
 
         trainName.text(snapshot.val().train);
+        newDestination.text(snapshot.val().destination);
+        newDeparture.text(snapshot.val().departure);
+        newFrequency.text(snapshot.val().frequency + " minutes");
+        newNext.text(snapshot.val().minRemaining + " minutes");
         console.log(trainName);
         newRow.append(trainName);
         newRow.append(newDestination);
